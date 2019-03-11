@@ -3,6 +3,9 @@ using MidiJack;
 
 public class DelegateTester : MonoBehaviour
 {
+    public GameObject indicatorGroup;
+     
+
     void NoteOn(MidiChannel channel, int note, float velocity)
     {
         Debug.Log("NoteOn: " + channel + "," + note + "," + velocity);
@@ -15,7 +18,9 @@ public class DelegateTester : MonoBehaviour
 
     void Knob(MidiChannel channel, int knobNumber, float knobValue)
     {
-        Debug.Log("Knob: " + knobNumber + "," + knobValue);
+        //Debug.Log("Knob: " + knobNumber + "," + knobValue);
+        var indicator = indicatorGroup.GetComponent<KnobIndicatorGroup>();
+        indicator.lastKnobTouched = knobNumber;
     }
 
     void OnEnable()
