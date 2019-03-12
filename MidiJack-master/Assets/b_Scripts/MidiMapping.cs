@@ -25,6 +25,7 @@ public enum ParticleParameters {
     NoiseStrength,
     NoiseSizeAmount,
     TrailsWidthOverTrails,
+    TrailsRibbonCount
 }
 public class MidiMapping : MonoBehaviour
 {
@@ -54,8 +55,9 @@ public class MidiMapping : MonoBehaviour
 17	TrailsWidthOverTrails,
 
         18, TrailsRibbonCount
-        19,
-        20
+        19, RendererSpeedScale
+        20   RendererLengthScale
+21 RotateSystemX
         */
 
 

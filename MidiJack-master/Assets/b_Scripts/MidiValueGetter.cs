@@ -4,8 +4,8 @@ using MidiJack;
 using System.Collections;
 using System.Collections.Generic;
 
-//BASED OFF DELEGRATE TESTER BY KEIJIRO
-//SENDS LISTENS FOR MIDI HARDWARE AND PUTS VALUES IN VARIABLES 
+//BASED OFF DelegateTester.cs BY KEIJIRO
+// LISTENS FOR MIDI HARDWARE AND PUTS VALUES IN VARIABLES 
 
 namespace MidiGetter { 
     public class MidiValueGetter : MonoBehaviour

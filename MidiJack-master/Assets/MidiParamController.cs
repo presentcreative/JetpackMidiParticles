@@ -45,6 +45,8 @@ public class MidiParamController : MonoBehaviour
     public float midiNoiseSizeAmount;
     public float midiTrailWidthOverTrail;
 
+    public float particleSystemRotationSpeedX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,14 +56,9 @@ public class MidiParamController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      /*  //START SIZE
-        midiStartSize = MidiMaster.GetKnob(midiStartSizeNum);
-        if (midiStartSize != midiStartSizePrev)
-        {
-           // StartSize(MidiMaster.GetKnob(midiStartSizeNum));
-        }
-        */
-        //START SPEED
+        
+        midiParticleSystem.transform.Rotate(Vector3.up, particleSystemRotationSpeedX * Time.deltaTime);
+
     }
 
 
@@ -117,7 +114,7 @@ public class MidiParamController : MonoBehaviour
                 
                 break;
             case 21:
-                
+                RotateSystemX(contVal);
                 break;
             case 20:
                 RendererLengthScale(contVal);
@@ -200,41 +197,47 @@ public class MidiParamController : MonoBehaviour
         {
             midiLifetime = Map(0, 15, 0, 1, passedMidiValue);
             midiParticleSystem.startLifetime = midiLifetime;
-            // }
+            string parameterName = "StartLifeTime";
+            ReadOut(midiLifetime, parameterName);
         }
         void StartSpeed(float passedMidiValue)
         {
             midiStartSpeed = Map(-500, 500, 0, 1, passedMidiValue);
             midiParticleSystem.startSpeed = midiStartSpeed;
-
+            string parameterName = "StartSpeed";
+            ReadOut(midiStartSpeed, parameterName);
         }
         void SimSpeed(float passedMidiValue)
         {
             var a = Map(0, 7, 0, 1, passedMidiValue);
             midiParticleSystem.playbackSpeed = a;
             midiSimulationSpeed = a;
-            //midiStartSizePrev = midiStartSize;
+            string parameterName = "SimSPeed";
+            ReadOut(a, parameterName);
         }
 
         void StartSize(float passedMidiValue)
         {
             midiStartSize = Map(0, 300, 0, 1, passedMidiValue);
             midiParticleSystem.startSize = midiStartSize;
-            //midiStartSizePrev = midiStartSize;
+            string parameterName = "StartSize";
+            ReadOut(midiStartSize, parameterName);
         }
 
         void EmissionRate(float passedMidiValue)
         {
             midiEmissionRate = Map(0, 500, 0, 1, passedMidiValue);
             midiParticleSystem.emissionRate = midiEmissionRate;
-            // }
+            string parameterName = "EmissionRate";
+            ReadOut(midiEmissionRate, parameterName);
         }
         
         void GravityModifier(float passedMidiValue)
         {
             midiGravityModifier = Map(0, 500, 0, 1, passedMidiValue);
             midiParticleSystem.gravityModifier = midiGravityModifier;
-            // }
+            string parameterName = "GravityModifier";
+            ReadOut(midiGravityModifier, parameterName);
         }
         void Dampen(float passedMidiValue)
         {
@@ -242,6 +245,8 @@ public class MidiParamController : MonoBehaviour
             var limitVelocityModule = midiParticleSystem.limitVelocityOverLifetime;
             limitVelocityModule.enabled = true;
             limitVelocityModule.dampen = midiDampen;
+            string parameterName = "Dampen";
+            ReadOut(midiDampen, parameterName);
         }
         
         
@@ -252,6 +257,8 @@ public class MidiParamController : MonoBehaviour
             // Enable it and set a value
             //limitVelocityModule.enabled = true;
             limitVelocityModule.angle = midiShapeAngle;
+            string parameterName = "ShapeAngle";
+            ReadOut(midiShapeAngle, parameterName);
         }
         void ForceOverLifeTimex(float passedMidiValue)
         {
@@ -261,6 +268,8 @@ public class MidiParamController : MonoBehaviour
             // Enable it and set a value
             //forceModule.enabled = true;
             forceModule.x = new ParticleSystem.MinMaxCurve(midiForceOverLifetime);
+            string parameterName = "ForceOverLifeTimeX";
+            ReadOut(midiForceOverLifetime, parameterName);
         }
         void ForceOverLifeTimey(float passedMidiValue)
         {
@@ -270,6 +279,8 @@ public class MidiParamController : MonoBehaviour
             // Enable it and set a value
             //forceModule.enabled = true;
             forceModule.y = new ParticleSystem.MinMaxCurve(midiForceOverLifetime);
+            string parameterName = "ForceOverLifeTimeY";
+            ReadOut(midiForceOverLifetime, parameterName);
         }
         void ForceOverLifeTimez(float passedMidiValue)
         {
@@ -279,6 +290,8 @@ public class MidiParamController : MonoBehaviour
             // Enable it and set a value
             //forceModule.enabled = true;
             forceModule.z = new ParticleSystem.MinMaxCurve(midiForceOverLifetime);
+            string parameterName = "ForceOverLifeTimeZ";
+            ReadOut(midiForceOverLifetime, parameterName);
         }
 
         void NoiseFreq(float passedMidiValue)
@@ -289,7 +302,9 @@ public class MidiParamController : MonoBehaviour
             // Enable it and set a value
             //forceModule.enabled = true;
             a.frequency = midiNoiseFreq;
-            
+            string parameterName = "NoiseFreq";
+            ReadOut(midiNoiseFreq, parameterName);
+
         }
         
         void NoiseStrength(float passedMidiValue)
@@ -300,6 +315,8 @@ public class MidiParamController : MonoBehaviour
             // Enable it and set a value
             //forceModule.enabled = true;
             a.strength = midiNoiseStrength;
+            string parameterName = "NoiseStrength";
+            ReadOut(midiNoiseStrength, parameterName);
         }
         
         void NoiseSizeAmount(float passedMidiValue)
@@ -310,6 +327,8 @@ public class MidiParamController : MonoBehaviour
             // Enable it and set a value
             //forceModule.enabled = true;
             a.sizeAmount = midiNoiseSizeAmount;
+            string parameterName = "NoiseSizeAmount";
+            ReadOut(midiNoiseSizeAmount, parameterName);
         }
         
         void TrailsWidthOverTrail(float passedMidiValue)
@@ -318,6 +337,8 @@ public class MidiParamController : MonoBehaviour
             midiTrailWidthOverTrail = Map(0, 100, 0, 1, passedMidiValue);
             var a = midiParticleSystem.trails;
             a.widthOverTrail = new ParticleSystem.MinMaxCurve(midiTrailWidthOverTrail);
+            string parameterName = "TrailWidthOverTrails";
+            ReadOut(midiTrailWidthOverTrail, parameterName);
         }
         void TrailsRibbonCount(float passedMidiValue)
         {
@@ -325,6 +346,8 @@ public class MidiParamController : MonoBehaviour
             var a = midiParticleSystem.trails;
             int iValue = (int)b; // convert the float to an int 
             a.ribbonCount = iValue;
+            string parameterName = "TrailRibbonCOunt";
+            ReadOut(b, parameterName);
         }
         void StartRotation(float passedMidiValue)
         {
@@ -332,6 +355,8 @@ public class MidiParamController : MonoBehaviour
             var tempMidiVal = Map(0, 90, 0, 1, passedMidiValue);
             var a = midiParticleSystem.main;
             a.startRotation = new ParticleSystem.MinMaxCurve(tempMidiVal);
+            string parameterName = "Start ROtation";
+            ReadOut(tempMidiVal, parameterName);
         }
         void ShapeRadius(float passedMidiValue)
         {
@@ -339,6 +364,8 @@ public class MidiParamController : MonoBehaviour
             var tempMidiVal = Map(0, 90, 0, 1, passedMidiValue);
             var a = midiParticleSystem.shape;
             a.radius = tempMidiVal;
+            string parameterName = "ShapeRadius";
+            ReadOut(tempMidiVal, parameterName);
         }
         void RendererLengthScale(float passedMidiValue)
         {
@@ -347,6 +374,8 @@ public class MidiParamController : MonoBehaviour
             //var a = midiParticleSystem.Renderer;
             var a = midiParticleSystem.GetComponent<ParticleSystemRenderer>();
             a.lengthScale = tempMidiVal;
+            string parameterName = "RenderLengthScale";
+            ReadOut(tempMidiVal, parameterName);
         }
         void RendererSpeedScale(float passedMidiValue)
         {
@@ -355,6 +384,8 @@ public class MidiParamController : MonoBehaviour
             //var a = midiParticleSystem.Renderer;
             var a = midiParticleSystem.GetComponent<ParticleSystemRenderer>();
             a.velocityScale = tempMidiVal;
+            string parameterName = "RendSpeedScale";
+            ReadOut(tempMidiVal, parameterName);
         }
         void ParticleColorR(float passedMidiValue)
         {
@@ -364,7 +395,9 @@ public class MidiParamController : MonoBehaviour
             var a = midiParticleSystem.startColor;
             var tempColor = new Color(tempMidiVal, 0, 1, .5f);
             a = tempColor;
-            
+            string parameterName = "Particle COlor R";
+            ReadOut(tempMidiVal, parameterName);
+
 
         }
         void ParticleColorG(float passedMidiValue)
@@ -374,6 +407,8 @@ public class MidiParamController : MonoBehaviour
             //var a = midiParticleSystem.Renderer;
             var a = midiParticleSystem.startColor;
             a = Color.green;
+            string parameterName = "Particle COlor G";
+            ReadOut(tempMidiVal, parameterName);
         }
         void ParticleColorB(float passedMidiValue)
         {
@@ -382,15 +417,28 @@ public class MidiParamController : MonoBehaviour
             //var a = midiParticleSystem.Renderer;
             var a = midiParticleSystem.startColor;
             a.b = tempMidiVal;
+            string parameterName = "Particle COlor B";
+            ReadOut(tempMidiVal, parameterName);
         }
         void ParticleColorA(float passedMidiValue)
         {
-            string parameterName = "particleColorA";
+            
             //version for setting an attribute that is a STRUCT https://blogs.unity3d.com/2016/04/20/particle-system-modules-faq/
             var tempMidiVal = Map(0, 1, 0, 1, passedMidiValue);
             //var a = midiParticleSystem.Renderer;
             var a = midiParticleSystem.startColor;
             a.a = tempMidiVal;
+            string parameterName = "Particle COlor A";
+            ReadOut(tempMidiVal, parameterName);
+        }
+        //transform.Rotate(Vector3.up, speed * Time.deltaTime);
+        void RotateSystemX(float passedMidiValue)
+        {
+            //version for setting an attribute that is a STRUCT https://blogs.unity3d.com/2016/04/20/particle-system-modules-faq/
+            var tempMidiVal = Map(-100, 100, 0, 1, passedMidiValue);
+            particleSystemRotationSpeedX = tempMidiVal;
+            //midiParticleSystem.transform.Rotate(Vector3.up, tempMidiVal * Time.deltaTime);
+            string parameterName = "RotateSystemX";
             ReadOut(tempMidiVal, parameterName);
         }
 
