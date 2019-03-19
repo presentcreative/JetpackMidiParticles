@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using MidiJack;
+using UnityEngine.UI;
 
 
 public class MidiParamController : MonoBehaviour
@@ -9,6 +10,7 @@ public class MidiParamController : MonoBehaviour
     public ParticleSystem midiParticleSystem;
     public MidiMapping midiMappingScript;
     public GameObject Logic;
+    public Text parameterToUI;
 
     public int mappedNum;
 
@@ -69,9 +71,11 @@ public class MidiParamController : MonoBehaviour
         //Debug.Log("UniController is firing with " + contNum);
 
         //LOOK UP WHAT IS CURRENTLY MAPPED TO THAT MIDI CHANNEL
+        if(midiMappingScript.editMode == false) { 
         Debug.Log("midimap converts " + contNum + " to " + midiMappingScript.particleParams[contNum] + " with value "+ contVal);
         mappedNum = midiMappingScript.particleParams[contNum];
-
+        }
+        //array of CC numbers to Switch Number
 
 
 
@@ -93,16 +97,16 @@ public class MidiParamController : MonoBehaviour
 
                 break;
         case 28:
-                
-        break; 
+                ParticleColorA(contVal);
+                break; 
         case 27:
-                
-        break; 
+                ParticleColorB(contVal);
+                break; 
         case 26:
-                
+                ParticleColorG(contVal);
                 break;
             case 25:
-                
+                ParticleColorR(contVal);
                 break;
             case 24:
                 
@@ -387,26 +391,57 @@ public class MidiParamController : MonoBehaviour
             string parameterName = "RendSpeedScale";
             ReadOut(tempMidiVal, parameterName);
         }
+
+        /*
+        void ParticleColor(float passedMidiValue)
+        {
+            //version for setting an attribute that is a STRUCT https://blogs.unity3d.com/2016/04/20/particle-system-modules-faq/
+            var tempMidiVal = Map(0, 1, 0, 1, passedMidiValue);
+
+            var particleMain = midiParticleSystem.main;
+            
+            // a.startRotation = new ParticleSystem.MinMaxCurve(tempMidiVal);
+
+            float colorR = tempMidiVal;
+            float colorG = particleMain.startColor.color.g;
+            float colorB = particleMain.startColor.color.b;
+            float colorA = particleMain.startColor.color.a;
+            particleMain.startColor = new Color(colorR, colorG, colorB, colorA);
+            string parameterName = "Particle COlor";
+            ReadOut(tempMidiVal, parameterName);
+        }*/
+        
         void ParticleColorR(float passedMidiValue)
         {
             //version for setting an attribute that is a STRUCT https://blogs.unity3d.com/2016/04/20/particle-system-modules-faq/
-            var tempMidiVal = Map(0, 255, 0, 1, passedMidiValue);
-            //var a = midiParticleSystem.Renderer;
-            var a = midiParticleSystem.startColor;
-            var tempColor = new Color(tempMidiVal, 0, 1, .5f);
-            a = tempColor;
+            var tempMidiVal = Map(0, 1, 0, 1, passedMidiValue);
+
+            var particleMain = midiParticleSystem.main;
+
+            // a.startRotation = new ParticleSystem.MinMaxCurve(tempMidiVal);
+
+            float colorR = tempMidiVal;
+            float colorG = particleMain.startColor.color.g;
+            float colorB = particleMain.startColor.color.b;
+            float colorA = particleMain.startColor.color.a;
+            particleMain.startColor = new Color(colorR, colorG, colorB, colorA);
             string parameterName = "Particle COlor R";
             ReadOut(tempMidiVal, parameterName);
-
-
         }
         void ParticleColorG(float passedMidiValue)
         {
             //version for setting an attribute that is a STRUCT https://blogs.unity3d.com/2016/04/20/particle-system-modules-faq/
             var tempMidiVal = Map(0, 1, 0, 1, passedMidiValue);
-            //var a = midiParticleSystem.Renderer;
-            var a = midiParticleSystem.startColor;
-            a = Color.green;
+
+            var particleMain = midiParticleSystem.main;
+
+            // a.startRotation = new ParticleSystem.MinMaxCurve(tempMidiVal);
+
+            float colorR = particleMain.startColor.color.r;
+            float colorG = tempMidiVal;
+            float colorB = particleMain.startColor.color.b;
+            float colorA = particleMain.startColor.color.a;
+            particleMain.startColor = new Color(colorR, colorG, colorB, colorA);
             string parameterName = "Particle COlor G";
             ReadOut(tempMidiVal, parameterName);
         }
@@ -414,20 +449,34 @@ public class MidiParamController : MonoBehaviour
         {
             //version for setting an attribute that is a STRUCT https://blogs.unity3d.com/2016/04/20/particle-system-modules-faq/
             var tempMidiVal = Map(0, 1, 0, 1, passedMidiValue);
-            //var a = midiParticleSystem.Renderer;
-            var a = midiParticleSystem.startColor;
-            a.b = tempMidiVal;
+
+            var particleMain = midiParticleSystem.main;
+
+            // a.startRotation = new ParticleSystem.MinMaxCurve(tempMidiVal);
+
+            float colorR = particleMain.startColor.color.r;
+            float colorG = particleMain.startColor.color.g;
+            float colorB = tempMidiVal;
+            float colorA = particleMain.startColor.color.a;
+            particleMain.startColor = new Color(colorR, colorG, colorB, colorA);
             string parameterName = "Particle COlor B";
             ReadOut(tempMidiVal, parameterName);
         }
         void ParticleColorA(float passedMidiValue)
         {
-            
+
             //version for setting an attribute that is a STRUCT https://blogs.unity3d.com/2016/04/20/particle-system-modules-faq/
             var tempMidiVal = Map(0, 1, 0, 1, passedMidiValue);
-            //var a = midiParticleSystem.Renderer;
-            var a = midiParticleSystem.startColor;
-            a.a = tempMidiVal;
+
+            var particleMain = midiParticleSystem.main;
+
+            // a.startRotation = new ParticleSystem.MinMaxCurve(tempMidiVal);
+
+            float colorR = particleMain.startColor.color.g;
+            float colorG = particleMain.startColor.color.g;
+            float colorB = particleMain.startColor.color.b;
+            float colorA = tempMidiVal;
+            particleMain.startColor = new Color(colorR, colorG, colorB, colorA);
             string parameterName = "Particle COlor A";
             ReadOut(tempMidiVal, parameterName);
         }
@@ -444,8 +493,8 @@ public class MidiParamController : MonoBehaviour
 
         void ReadOut(float tempMidiVal, string parameterName)
         {
-            Debug.Log("parameter  " + parameterName + " with value " + tempMidiVal);
-
+            Debug.Log("parameter " + parameterName + " with value " + tempMidiVal);
+            parameterToUI.text = parameterName.ToString() + " " + tempMidiVal.ToString();
         }
 
         // used to normalize any value range (new min, new max, old min, old max, oldValue)

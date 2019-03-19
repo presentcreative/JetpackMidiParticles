@@ -32,7 +32,15 @@ namespace MidiGetter {
             // var indicator = indicatorGroup.GetComponent<KnobIndicatorGroup>();
             //indicator.lastKnobTouched = knobNumber;
             //objectWithOtherScript.GetComponent.< script1 > ().someVariable = someNumber;
-            midiParamControllerScript.UniController(knobNumber, knobValue);
+            if(midiMappingScript.editMode == true)
+            {
+                midiMappingScript.EditThisChannel();
+            }
+            if(midiMappingScript.editMode == false)
+            {
+                midiParamControllerScript.UniController(knobNumber, knobValue);
+            }
+            
             
         }
 
