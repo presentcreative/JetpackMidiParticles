@@ -48,6 +48,8 @@ public class MidiParamController : MonoBehaviour
     public float midiTrailWidthOverTrail;
 
     public float particleSystemRotationSpeedX;
+    public float particleSystemRotationSpeedY;
+    public float particleSystemRotationSpeedZ;
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +62,8 @@ public class MidiParamController : MonoBehaviour
     {
         
         midiParticleSystem.transform.Rotate(Vector3.up, particleSystemRotationSpeedX * Time.deltaTime);
+        midiParticleSystem.transform.Rotate(Vector3.up, particleSystemRotationSpeedY * Time.deltaTime);
+        midiParticleSystem.transform.Rotate(Vector3.up, particleSystemRotationSpeedZ * Time.deltaTime);
 
     }
 
@@ -84,16 +88,16 @@ public class MidiParamController : MonoBehaviour
         {
             
         case 32:
-                ParticleColorA(contVal);
+        
         break;
         case 31:
-                ParticleColorB(contVal);
+        
         break;
         case 30:
-                ParticleColorG(contVal);
+        
         break;
         case 29:
-                ParticleColorR(contVal);
+        
 
                 break;
         case 28:
@@ -112,10 +116,10 @@ public class MidiParamController : MonoBehaviour
                 
                 break;
             case 23:
-                
+                RotateSystemZ(contVal);
                 break;
             case 22:
-                
+                RotateSystemY(contVal);
                 break;
             case 21:
                 RotateSystemX(contVal);
@@ -486,11 +490,25 @@ public class MidiParamController : MonoBehaviour
             //version for setting an attribute that is a STRUCT https://blogs.unity3d.com/2016/04/20/particle-system-modules-faq/
             var tempMidiVal = Map(-100, 100, 0, 1, passedMidiValue);
             particleSystemRotationSpeedX = tempMidiVal;
-            //midiParticleSystem.transform.Rotate(Vector3.up, tempMidiVal * Time.deltaTime);
             string parameterName = "RotateSystemX";
             ReadOut(tempMidiVal, parameterName);
         }
-
+        void RotateSystemY(float passedMidiValue)
+        {
+            //version for setting an attribute that is a STRUCT https://blogs.unity3d.com/2016/04/20/particle-system-modules-faq/
+            var tempMidiVal = Map(-100, 100, 0, 1, passedMidiValue);
+            particleSystemRotationSpeedY = tempMidiVal;
+            string parameterName = "RotateSystemY";
+            ReadOut(tempMidiVal, parameterName);
+        }
+        void RotateSystemZ(float passedMidiValue)
+        {
+            //version for setting an attribute that is a STRUCT https://blogs.unity3d.com/2016/04/20/particle-system-modules-faq/
+            var tempMidiVal = Map(-100, 100, 0, 1, passedMidiValue);
+            particleSystemRotationSpeedZ = tempMidiVal;
+            string parameterName = "RotateSystemZ";
+            ReadOut(tempMidiVal, parameterName);
+        }
         void ReadOut(float tempMidiVal, string parameterName)
         {
             Debug.Log("parameter " + parameterName + " with value " + tempMidiVal);
