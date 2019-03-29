@@ -7,28 +7,46 @@ public class particalSystemLoader : MonoBehaviour
 
     public GameObject[] particleSystems = new GameObject[10];
     public ParticleSystem currectParticleSystem;
+    public GameObject currentParticleSysGameObject;
     public int currentNum;
     public MidiParamController midiParamControllerScript;
 
-   
+    public Vector3 nextLoc;
+    public Quaternion nextQuat;
+    public Vector3 storedLoc1;
+    public Quaternion storedQuat1;
+    public Vector3 storedLoc2;
+    public Quaternion storedQuat2;
+
+    public Quaternion currentQuat;
+
+
 
     // Update is called once per frame
     void Update()
     {
-        /*
-
-        if (Input.GetMouseButton(0))
+        
+        
+        
+        if (Input.GetKeyDown("n"))
         {
-            var mousePos = Input.mousePosition;
-            mousePos.z = 1.5f;
-            var worldPos = camera.ScreenToWorldPoint(mousePos);
-            Instantiate(blue, worldPos, Quaternion.identity);
+            
+            //NewParticleSystem();
+            ReplaceParticleSystem();
         }
-        */
-        if (Input.GetKeyDown("9"))
+        if (Input.GetKeyDown("q"))
         {
-            print("space key was pressed in particlesystemloader");
-            NewParticleSystem();
+            
+            nextQuat = storedQuat1;
+            nextLoc = storedLoc1;
+            
+        }
+        if (Input.GetKeyDown("w"))
+        {
+
+            nextQuat = storedQuat2;
+            nextLoc = storedLoc2;
+
         }
         if (Input.GetKeyDown("0"))
         {
@@ -62,6 +80,14 @@ public class particalSystemLoader : MonoBehaviour
         {
             currentNum = 7;
         }
+        if (Input.GetKeyDown("8"))
+        {
+            currentNum = 8;
+        }
+        if (Input.GetKeyDown("9"))
+        {
+            currentNum = 9;
+        }
         if (Input.GetMouseButtonDown(0))
         {
             var mousepos = Input.mousePosition;
@@ -76,21 +102,28 @@ public class particalSystemLoader : MonoBehaviour
     void NewParticleSystem()
     {
         Destroy(currectParticleSystem);
-
-        GameObject newSys = Instantiate(particleSystems[currentNum], transform.position, Quaternion.identity, null) as GameObject;
+        
+        GameObject newSys = Instantiate(particleSystems[currentNum], nextLoc, nextQuat, null) as GameObject;
         newSys.SetActive(true);
         currectParticleSystem = newSys.GetComponent<ParticleSystem>();
         //currentNum++;
         midiParamControllerScript.midiParticleSystem = currectParticleSystem;
     }
+    void ReplaceParticleSystem()
+    {
+        Destroy(currentParticleSysGameObject);
+        currentParticleSysGameObject = Instantiate(particleSystems[currentNum], nextLoc, nextQuat, null) as GameObject;
+        currentParticleSysGameObject.SetActive(true);
+        currectParticleSystem = currentParticleSysGameObject.GetComponent<ParticleSystem>();
+        midiParamControllerScript.midiParticleSystem = currectParticleSystem;
+    }
+
     void NewParticleSystemAtLoc(Vector3 loc)
     {
         Destroy(currectParticleSystem);
         GameObject newSys = Instantiate(particleSystems[currentNum], loc, Quaternion.identity, null) as GameObject;
         newSys.SetActive(true);
         currectParticleSystem = newSys.GetComponent<ParticleSystem>();
-
-
         //currentNum++;
         midiParamControllerScript.midiParticleSystem = currectParticleSystem;
     }

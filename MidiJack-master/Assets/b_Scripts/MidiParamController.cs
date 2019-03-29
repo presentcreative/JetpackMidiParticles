@@ -261,7 +261,7 @@ public class MidiParamController : MonoBehaviour
         
         void GravityModifier(float passedMidiValue)
         {
-            midiGravityModifier = Map(0, 500, 0, 1, passedMidiValue);
+            midiGravityModifier = Map(0, 30, 0, 1, passedMidiValue);
             midiParticleSystem.gravityModifier = midiGravityModifier;
             string parameterName = "GravityModifier";
             ReadOut(midiGravityModifier, parameterName);
