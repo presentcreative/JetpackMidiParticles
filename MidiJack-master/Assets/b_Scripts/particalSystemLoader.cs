@@ -120,10 +120,10 @@ public class particalSystemLoader : MonoBehaviour
 
     void NewParticleSystemAtLoc(Vector3 loc)
     {
-        Destroy(currectParticleSystem);
-        GameObject newSys = Instantiate(particleSystems[currentNum], loc, Quaternion.identity, null) as GameObject;
-        newSys.SetActive(true);
-        currectParticleSystem = newSys.GetComponent<ParticleSystem>();
+        Destroy(currentParticleSysGameObject);
+        currentParticleSysGameObject = Instantiate(particleSystems[currentNum], loc, Quaternion.identity, null) as GameObject;
+        currentParticleSysGameObject.SetActive(true);
+        currectParticleSystem = currentParticleSysGameObject.GetComponent<ParticleSystem>();
         //currentNum++;
         midiParamControllerScript.midiParticleSystem = currectParticleSystem;
     }
