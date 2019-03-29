@@ -25,9 +25,9 @@ public class particalSystemLoader : MonoBehaviour
             Instantiate(blue, worldPos, Quaternion.identity);
         }
         */
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("9"))
         {
-            print("space key was pressed");
+            print("space key was pressed in particlesystemloader");
             NewParticleSystem();
         }
         if (Input.GetKeyDown("0"))
@@ -37,6 +37,39 @@ public class particalSystemLoader : MonoBehaviour
         if (Input.GetKeyDown("1"))
         {
             currentNum = 1;
+        }
+        if (Input.GetKeyDown("2"))
+        {
+            currentNum = 2;
+        }
+        if (Input.GetKeyDown("3"))
+        {
+            currentNum = 3;
+        }
+        if (Input.GetKeyDown("4"))
+        {
+            currentNum = 4;
+        }
+        if (Input.GetKeyDown("5"))
+        {
+            currentNum = 5;
+        }
+        if (Input.GetKeyDown("6"))
+        {
+            currentNum = 6;
+        }
+        if (Input.GetKeyDown("7"))
+        {
+            currentNum = 7;
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            var mousepos = Input.mousePosition;
+            mousepos.z = 10;
+
+            mousepos = Camera.main.ScreenToWorldPoint(mousepos);
+            //linehandler = Instantiate(lineprefab, mousepos, Quaternion.identity) as GameObject;
+            NewParticleSystemAtLoc(mousepos);
         }
     }
 
@@ -50,10 +83,10 @@ public class particalSystemLoader : MonoBehaviour
         //currentNum++;
         midiParamControllerScript.midiParticleSystem = currectParticleSystem;
     }
-    void NewParticleSystemAtLoc()
+    void NewParticleSystemAtLoc(Vector3 loc)
     {
         Destroy(currectParticleSystem);
-        GameObject newSys = Instantiate(particleSystems[currentNum], transform.position, Quaternion.identity, null) as GameObject;
+        GameObject newSys = Instantiate(particleSystems[currentNum], loc, Quaternion.identity, null) as GameObject;
         newSys.SetActive(true);
         currectParticleSystem = newSys.GetComponent<ParticleSystem>();
 

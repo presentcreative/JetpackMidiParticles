@@ -14,31 +14,31 @@ public class KnobIndicatorGroup : MonoBehaviour
    
     public int midiStartSizeNum;
     public float midiStartSize;
-    public float midiStartSizePrev;
+    //public float midiStartSizePrev;
     public int midiStartSpeedNum;
     public float midiStartSpeed;
-    public float midiStartSpeedPrev;
+    //public float midiStartSpeedPrev;
     public int midiEmissionRateNum;
     public float midiEmissionRate;
-    public float midiEmissionRatePrev;
+   // public float midiEmissionRatePrev;
     public int midiGravityModifierNum;
     public float midiGravityModifier;
-    public float midiGravityModifierPrev;
+    //public float midiGravityModifierPrev;
     public int midiStartLifetimeNum;
     public float midiStartLifetime;
-    public float midiStartLifetimePrev;
+    //public float midiStartLifetimePrev;
     public int midiForceOverLifetimeNum;
     public float midiForceOverLifetime;
-    public float midiForceOverLifetimePrev;
+   // public float midiForceOverLifetimePrev;
     public int midiDampenNum;
     public float midiDampen;
-    public float midiDampenPrev;
+    //public float midiDampenPrev;
     public int midiLifetimeNum;
     public float midiLifetime;
-    public float midiLifetimePrev;
+    //public float midiLifetimePrev;
     public int midiShapeAngleNum;
     public float midiShapeAngle;
-    public float midiShapeAnglePrev;
+    //public float midiShapeAnglePrev;
 
     public int newMidiCCNum;
     public bool editMode;
@@ -185,14 +185,14 @@ public class KnobIndicatorGroup : MonoBehaviour
             }
             
         }
-
+        /*
         //START SIZE
         midiStartSize = MidiMaster.GetKnob(midiStartSizeNum);
         if (midiStartSize != midiStartSizePrev)
         {
             StartSize(MidiMaster.GetKnob(midiStartSizeNum));
             
-        }
+        }*/
     }
 
     //CHANGE KNOB ASSIGNMENT
@@ -212,13 +212,14 @@ public class KnobIndicatorGroup : MonoBehaviour
         print("edit mode is true and editable button clicked was " + editableButtonNum);
     }
 
-    
+    /*
     void StartSize(float passedMidiValue)
     {
         midiStartSize = Map(0, 300, 0, 1, passedMidiValue);
         midiParticleSystem.startSize = midiStartSize;
         midiStartSizePrev = midiStartSize;
     }
+    */
     void StartSpeed(float passedMidiValue)
     {
         midiStartSpeed = Map(-500, 500, 0, 1, passedMidiValue);

@@ -14,33 +14,40 @@ public class MidiParamController : MonoBehaviour
 
     public int mappedNum;
 
+    public Matrix4x4 testMatrix;
+    public Quaternion testQuat;
+    public Vector4 testVector4;
+    public Rect testRect;
+    public Color testColor;
+    public LayerMask testMask;
+
     public int midiStartSizeNum;
     public float midiStartSize;
-    public float midiStartSizePrev;
+    //public float midiStartSizePrev;
     public int midiStartSpeedNum;
     public float midiStartSpeed;
-    public float midiStartSpeedPrev;
+   // public float midiStartSpeedPrev;
     public int midiEmissionRateNum;
     public float midiEmissionRate;
-    public float midiEmissionRatePrev;
+   // public float midiEmissionRatePrev;
     public int midiGravityModifierNum;
     public float midiGravityModifier;
-    public float midiGravityModifierPrev;
+    //public float midiGravityModifierPrev;
     public int midiStartLifetimeNum;
     public float midiStartLifetime;
-    public float midiStartLifetimePrev;
+    //public float midiStartLifetimePrev;
     public int midiForceOverLifetimeNum;
     public float midiForceOverLifetime;
-    public float midiForceOverLifetimePrev;
+   // public float midiForceOverLifetimePrev;
     public int midiDampenNum;
     public float midiDampen;
-    public float midiDampenPrev;
+   // public float midiDampenPrev;
     public int midiLifetimeNum;
     public float midiLifetime;
-    public float midiLifetimePrev;
+   // public float midiLifetimePrev;
     public int midiShapeAngleNum;
     public float midiShapeAngle;
-    public float midiShapeAnglePrev;
+   // public float midiShapeAnglePrev;
     public float midiSimulationSpeed;
     public float midiNoiseStrength;
     public float midiNoiseFreq;
@@ -51,6 +58,15 @@ public class MidiParamController : MonoBehaviour
     public float particleSystemRotationSpeedY;
     public float particleSystemRotationSpeedZ;
 
+    public Vector3 wallRoof;
+    public Vector3 wallFloor;
+    public Vector3 wallRight;
+    public Vector3 wallLeft;
+
+    public GameObject wallRoofObj;
+    public GameObject wallFloorObj;
+    public GameObject wallLeftObj;
+    public GameObject wallRightObj;
     // Start is called before the first frame update
     void Start()
     {
@@ -113,7 +129,10 @@ public class MidiParamController : MonoBehaviour
                 ParticleColorR(contVal);
                 break;
             case 24:
-                
+                wallFloorMover(contVal);
+                wallRoofMover(contVal);
+                wallRightMover(contVal);
+                wallLeftMover(contVal);
                 break;
             case 23:
                 RotateSystemZ(contVal);
@@ -168,16 +187,16 @@ public class MidiParamController : MonoBehaviour
                 ShapeRadius(contVal);
                 break;
             case 8:
-                
-                
-                ShapeAngle(contVal);
-                break;
-            case 7:
-                
+
+
                 EmissionRate(contVal);
                 break;
+            case 7:
+                ShapeAngle(contVal);
+                
+                break;
             case 6:
-
+                
                 SimSpeed(contVal);
                 break;
             case 5:
@@ -396,6 +415,8 @@ public class MidiParamController : MonoBehaviour
             ReadOut(tempMidiVal, parameterName);
         }
 
+        
+
         /*
         void ParticleColor(float passedMidiValue)
         {
@@ -414,7 +435,7 @@ public class MidiParamController : MonoBehaviour
             string parameterName = "Particle COlor";
             ReadOut(tempMidiVal, parameterName);
         }*/
-        
+
         void ParticleColorR(float passedMidiValue)
         {
             //version for setting an attribute that is a STRUCT https://blogs.unity3d.com/2016/04/20/particle-system-modules-faq/
@@ -513,6 +534,65 @@ public class MidiParamController : MonoBehaviour
         {
             Debug.Log("parameter " + parameterName + " with value " + tempMidiVal);
             parameterToUI.text = parameterName.ToString() + " " + tempMidiVal.ToString();
+        }
+        void wallFloorMover(float passedMidiValue) //changes the location of the collision walls
+        {
+            var tempMidiVal = Map(0, 100, 0, 1, passedMidiValue);
+            wallFloor = wallFloorObj.transform.position;
+            //Move floor
+            var x = wallFloorObj.transform.position.x;
+            var y = wallFloorObj.transform.position.y;
+            var z = wallFloorObj.transform.position.z;
+            y = tempMidiVal;
+            wallFloorObj.transform.position = new Vector3(x,y,z);
+
+
+            string parameterName = "wallFloor";
+            ReadOut(tempMidiVal, parameterName);
+        }
+        void wallRoofMover(float passedMidiValue) //changes the location of the collision walls
+        {
+            var tempMidiVal = Map(0, 100, 0, 1, passedMidiValue);
+            wallRoof = wallRoofObj.transform.position;
+           
+            var x = wallRoof.x;
+            var y = wallRoof.y;
+            var z = wallRoof.z;
+
+            y = tempMidiVal*-1;
+            wallRoofObj.transform.position = new Vector3(x, y, z);
+
+            string parameterName = "wallRoof";
+            ReadOut(tempMidiVal, parameterName);
+        }
+
+        void wallRightMover(float passedMidiValue) //changes the location of the collision walls
+        {
+            var tempMidiVal = Map(0, 100, 0, 1, passedMidiValue);
+            wallRight = wallRightObj.transform.position;
+
+            var x = wallRightObj.transform.position.x;
+            var y = wallRightObj.transform.position.y;
+            var z = wallRightObj.transform.position.z;
+            x = tempMidiVal;
+            wallRightObj.transform.position = new Vector3(x, y, z);
+
+            string parameterName = "wallRight";
+            ReadOut(tempMidiVal, parameterName);
+        }
+        void wallLeftMover(float passedMidiValue) //changes the location of the collision walls
+        {
+            var tempMidiVal = Map(0, 100, 0, 1, passedMidiValue);
+            wallLeft = wallLeftObj.transform.position;
+            
+            var x = wallLeftObj.transform.position.x;
+            var y = wallLeftObj.transform.position.y;
+            var z = wallLeftObj.transform.position.z;
+            x = tempMidiVal*-1;
+            wallLeftObj.transform.position = new Vector3(x, y, z);
+
+            string parameterName = "wallLeft";
+            ReadOut(tempMidiVal, parameterName);
         }
 
         // used to normalize any value range (new min, new max, old min, old max, oldValue)

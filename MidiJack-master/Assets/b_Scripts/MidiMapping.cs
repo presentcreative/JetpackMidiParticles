@@ -71,6 +71,7 @@ public class MidiMapping : MonoBehaviour
             particleParams[MidiValueGetter.currentKnobNum] =  editableButtonNum; 
         }
         */
+        /*
         if (Input.GetKeyDown("space"))
         {
             if(editMode == true)
@@ -82,6 +83,7 @@ public class MidiMapping : MonoBehaviour
             //Debug.Log(midiParticleSystem.main.simulationSpeed);
             //         StartSize();
         }
+        */
     }
     public void EditThisChannel()
     {
