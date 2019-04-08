@@ -88,6 +88,7 @@ public class particalSystemLoader : MonoBehaviour
         {
             currentNum = 9;
         }
+        /*
         if (Input.GetMouseButtonDown(0))
         {
             var mousepos = Input.mousePosition;
@@ -95,8 +96,10 @@ public class particalSystemLoader : MonoBehaviour
 
             mousepos = Camera.main.ScreenToWorldPoint(mousepos);
             //linehandler = Instantiate(lineprefab, mousepos, Quaternion.identity) as GameObject;
-            NewParticleSystemAtLoc(mousepos);
+           // NewParticleSystemAtLoc(mousepos);
         }
+        */
+
     }
 
     void NewParticleSystem()
