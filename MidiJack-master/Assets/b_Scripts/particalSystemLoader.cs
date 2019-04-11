@@ -120,6 +120,14 @@ public class particalSystemLoader : MonoBehaviour
         currectParticleSystem = currentParticleSysGameObject.GetComponent<ParticleSystem>();
         midiParamControllerScript.midiParticleSystem = currectParticleSystem;
     }
+    public void NewHitParticleSystem(int note, float velocity)
+    {
+        Destroy(currentParticleSysGameObject);
+        currentParticleSysGameObject = Instantiate(particleSystems[currentNum], nextLoc, nextQuat, null) as GameObject;
+        currentParticleSysGameObject.SetActive(true);
+        currectParticleSystem = currentParticleSysGameObject.GetComponent<ParticleSystem>();
+        midiParamControllerScript.midiParticleSystem = currectParticleSystem;
+    }
 
     void NewParticleSystemAtLoc(Vector3 loc)
     {

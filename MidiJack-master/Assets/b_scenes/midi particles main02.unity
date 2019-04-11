@@ -6037,7 +6037,7 @@ PrefabInstance:
     - target: {fileID: 6624057402842057427, guid: 18ac445ad2c2ff84fa0ae76fd4edc631,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2190936412924252967, guid: 18ac445ad2c2ff84fa0ae76fd4edc631,
         type: 3}
@@ -6756,7 +6756,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1396805541}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
@@ -7067,6 +7067,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   midiMappingScript: {fileID: 1499276202}
   midiParamControllerScript: {fileID: 1499276203}
+  particleSystemLoaderScript: {fileID: 1499276204}
 --- !u!4 &1499276201
 Transform:
   m_ObjectHideFlags: 0

@@ -12,12 +12,14 @@ namespace MidiGetter {
     {
         public MidiMapping midiMappingScript;
         public MidiParamController midiParamControllerScript;
+        public particalSystemLoader particleSystemLoaderScript;
         //public Transform Logic;
         public static int currentKnobNum;
 
         void NoteOn(MidiChannel channel, int note, float velocity)
         {
             Debug.Log("NoteOn: " + channel + "," + note + "," + velocity);
+            particleSystemLoaderScript.NewHitParticleSystem(note,velocity);
         }
 
         void NoteOff(MidiChannel channel, int note)
