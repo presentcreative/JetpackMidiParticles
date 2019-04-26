@@ -174,6 +174,8 @@ namespace Leap.Unity {
 
         void getData() {
            Debug.Log(palmPositionSphere.position);
+            
+
             leapToVfxScript.LPalmX = palmPositionSphere.position.x;
             leapToVfxScript.LPalmY = palmPositionSphere.position.y;
             leapToVfxScript.LPalmZ = palmPositionSphere.position.z;

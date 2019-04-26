@@ -912,6 +912,7 @@ VFXRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1440,9 +1441,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LPalmTransform: {fileID: 1414779720}
   LeftPalm: {fileID: 1414779719}
-  LPalmX: 0.080000006
+  LPalmX: -0.080000006
   LPalmY: -0.18
   LPalmZ: -4.58
+  DefaultLPalmX: 0
+  DefaultLPalmY: 0
+  DefaultLPalmZ: -5
+  OldLPalmX: 0
+  OldLPalmY: 0
+  OldLPalmZ: 0
   _target: {fileID: 512898157}
 --- !u!1 &903301933
 GameObject:
