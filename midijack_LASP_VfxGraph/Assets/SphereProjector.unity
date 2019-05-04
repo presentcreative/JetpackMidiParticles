@@ -1445,11 +1445,11 @@ MonoBehaviour:
   LPalmY: -0.18
   LPalmZ: -4.58
   DefaultLPalmX: 0
-  DefaultLPalmY: 0
-  DefaultLPalmZ: -5
-  OldLPalmX: 0
-  OldLPalmY: 0
-  OldLPalmZ: 0
+  DefaultLPalmY: 0.07
+  DefaultLPalmZ: -5.1
+  OldLPalmX: 0.66147417
+  OldLPalmY: 0.056051284
+  OldLPalmZ: -4.710961
   _target: {fileID: 512898157}
 --- !u!1 &903301933
 GameObject:
