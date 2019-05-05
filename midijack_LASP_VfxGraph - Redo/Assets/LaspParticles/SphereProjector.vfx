@@ -51,7 +51,7 @@ MonoBehaviour:
     x: -1596
     y: -1700
     width: 4703
-    height: 4381
+    height: 4382
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2801,7 +2801,7 @@ VisualEffectResource:
         - m_ExpressionIndex: 12
           m_Value: -2.54
         - m_ExpressionIndex: 13
-          m_Value: 50000
+          m_Value: 500
         - m_ExpressionIndex: 17
           m_Value: 100000
         - m_ExpressionIndex: 18
@@ -2821,7 +2821,7 @@ VisualEffectResource:
         - m_ExpressionIndex: 29
           m_Value: 1
         - m_ExpressionIndex: 30
-          m_Value: 0.4
+          m_Value: 0.07
         - m_ExpressionIndex: 31
           m_Value: -0.2
         - m_ExpressionIndex: 33
@@ -2847,7 +2847,7 @@ VisualEffectResource:
         - m_ExpressionIndex: 43
           m_Value: 0
         - m_ExpressionIndex: 44
-          m_Value: 2.39
+          m_Value: 1.51
         - m_ExpressionIndex: 45
           m_Value: 1
         - m_ExpressionIndex: 46
@@ -2855,19 +2855,19 @@ VisualEffectResource:
         - m_ExpressionIndex: 50
           m_Value: 0
         - m_ExpressionIndex: 51
-          m_Value: 18057
+          m_Value: 0
         - m_ExpressionIndex: 52
           m_Value: 1
         - m_ExpressionIndex: 56
-          m_Value: 800000
+          m_Value: 800
         - m_ExpressionIndex: 57
           m_Value: -0.2
         - m_ExpressionIndex: 58
-          m_Value: -45
+          m_Value: 45
         - m_ExpressionIndex: 63
           m_Value: 46.2
         - m_ExpressionIndex: 66
-          m_Value: 2
+          m_Value: -2
         - m_ExpressionIndex: 67
           m_Value: -2
         - m_ExpressionIndex: 68
@@ -2881,9 +2881,9 @@ VisualEffectResource:
         - m_ExpressionIndex: 75
           m_Value: 2
         - m_ExpressionIndex: 81
-          m_Value: 45
+          m_Value: -45
         - m_ExpressionIndex: 84
-          m_Value: -2
+          m_Value: 2
         - m_ExpressionIndex: 85
           m_Value: 0.01
         - m_ExpressionIndex: 86
@@ -4076,7 +4076,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 50000
+      m_SerializableObject: 500
     m_Space: 2147483647
   m_Property:
     name: newRangeMax
@@ -18752,7 +18752,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 18057
+      m_SerializableObject: 0
     m_Space: 2147483647
   m_Property:
     name: newRangeMin
@@ -18792,7 +18792,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 800000
+      m_SerializableObject: 800
     m_Space: 2147483647
   m_Property:
     name: newRangeMax
@@ -19183,7 +19183,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: -45
+      m_SerializableObject: 45
     m_Space: 2147483647
   m_Property:
     name: newRangeMin
@@ -19223,7 +19223,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 45
+      m_SerializableObject: -45
     m_Space: 2147483647
   m_Property:
     name: newRangeMax
@@ -21934,7 +21934,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: -2
+      m_SerializableObject: 2
     m_Space: 2147483647
   m_Property:
     name: newRangeMin
@@ -21974,7 +21974,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 2
+      m_SerializableObject: -2
     m_Space: 2147483647
   m_Property:
     name: newRangeMax
@@ -22208,7 +22208,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.4
+      m_SerializableObject: 0.07
     m_Space: 2147483647
   m_Property:
     name: newRangeMin
@@ -22248,7 +22248,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 2.39
+      m_SerializableObject: 1.51
     m_Space: 2147483647
   m_Property:
     name: newRangeMax
